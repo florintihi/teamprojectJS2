@@ -1,98 +1,65 @@
 const ul = document.querySelector('ul');
-const urlFetch = 'https://jsonplaceholder.typicode.com/photos';
-
-
-// fetch(urlFetch)
-//     .then(res => {
-//        return res.json();
-//     })
-//     .then(data => {
-//         data.forEach(film => {
-         
-//         const liElement = document.createElement('li');
-//         liElement.classList.add('film-box');
-
-//         const imgElement = document.createElement('img');
-//         imgElement.classList.add('film-img')
-//         imgElement.alt = 'Movie cover photo'
-//         imgElement.src = film.url;
-//         liElement.appendChild(imgElement);
-
-//         const filmInfoContainer = document.createElement('div');
-//         filmInfoContainer.classList.add('film-info-container');
-
-//         const filmName = document.createElement('p');
-//         filmName.classList.add('film-name');
-//         filmName.textContent = film.albumId;
-//         filmInfoContainer.appendChild(filmName);
-
-//         const filmRating = document.createElement('span');
-//         filmRating.classList.add('film-rating');
-//         filmRating.textContent = `${film.title} | ${film.id}`;
-//         filmInfoContainer.appendChild(filmRating);
-    
-//         liElement.appendChild(filmInfoContainer);
-
-//         ul.appendChild(liElement);
-        
-//         console.log(imgElement.src)
-//         });
-//     })
-//     .catch(err => console.log(err))
+const apiKey = '48ef3a20ec8d887e9b9ced5296a0c50a';
+const urlFetch = `https://api.themoviedb.org/3/trending/all/week?api_key=${apiKey}`;
+const genresUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`;
+const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer 48ef3a20ec8d887e9b9ced5296a0c50a'
+    }
+};
 
 
 
+fetch(genresUrl, options)
+  .then(res => res.json())
+  .then(genreData =>{
+    const genresMap = {};
+    genreData.genres.forEach(genre => {
+      genresMap[genre.id] = genre.name;
+    });
 
+    fetch(urlFetch, options)
+      .then(res => res.json())
+      .then(data => {
+          data.results.forEach(film => {
+              const liElement = document.createElement('li');
+              liElement.classList.add('film-box');
 
-       // const markup = 
-            // `
-            // <li class="film-box">
-            //     <p class="film-img">${film.email}</p>
-            //     <div class="film-info-container">
-            //         <p class="film-name">${film.name}</p>
-            //         <span class="film-rating">${film.username} | ${film.id}</span> 
-            //     </div>
-            // </li>
-            // `
-            // li.insertAdjacentHTML('afterbegin',markup)
+              const imgElement = document.createElement('img');
+              imgElement.classList.add('film-img')
+              imgElement.alt = 'Movie cover photo'
+              imgElement.src = `https://image.tmdb.org/t/p/w500${film.poster_path}`;
+              liElement.appendChild(imgElement);
 
+              const filmInfoContainer = document.createElement('div');
+              filmInfoContainer.classList.add('film-info-container');
 
+              const filmName = document.createElement('p');
+              filmName.classList.add('film-name');
+              // TODO: UNELE TITLURI NU SUNT AFISATE
+              filmName.textContent = film.title;
+              filmInfoContainer.appendChild(filmName);
 
-fetch(urlFetch)
-    .then(res => {
-       return res.json();
-    })
-    .then(data => {
-        for (let i = 0; i < Math.min(12, data.length); i++) {
-            const film = data[i];
+              const filmRating = document.createElement('p');
+              filmRating.classList.add('film-rating');
+            // TODO: DACA EXISTA UN SINGUR GEN, SA NU AFISEZE VIRGULA
+              const genresNames = film.genre_ids.map(genreId => genresMap[genreId]);
+              // TODO: DACA E 8.0 SA AFISEZE DOAR 8
+              const releaseYear = new Date(film.release_date).getFullYear();
+              const rating = film.vote_average.toFixed(1);
+              
 
-            const liElement = document.createElement('li');
-            liElement.classList.add('film-box');
+              filmRating.textContent = `${genresNames.join(', ')} | ${releaseYear} ${rating}`;
+              filmInfoContainer.appendChild(filmRating);
 
-            const imgElement = document.createElement('img');
-            imgElement.classList.add('film-img')
-            imgElement.alt = 'Movie cover photo'
-            imgElement.src = film.url;
-            liElement.appendChild(imgElement);
+              liElement.appendChild(filmInfoContainer);
 
-            const filmInfoContainer = document.createElement('div');
-            filmInfoContainer.classList.add('film-info-container');
-
-            const filmName = document.createElement('p');
-            filmName.classList.add('film-name');
-            filmName.textContent = film.thumbnailUrl;
-            filmInfoContainer.appendChild(filmName);
-
-            const filmRating = document.createElement('span');
-            filmRating.classList.add('film-rating');
-            filmRating.textContent = `${film.title} | ${film.id}`;
-            filmInfoContainer.appendChild(filmRating);
-        
-            liElement.appendChild(filmInfoContainer);
-
-            ul.appendChild(liElement);
-            
-            console.log(imgElement.src);
-        }
-    })
-    .catch(err => console.log(err));
+              ul.append(liElement);
+              console.log(data)
+          });
+      })
+      .catch(err => console.log(err));
+  })
+  .catch(err => console.log(err));
