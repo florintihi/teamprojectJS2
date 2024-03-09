@@ -11,7 +11,6 @@ ul {
     align-items: center;
     padding: 20px;
     row-gap: 20px;
-    border: 1px solid red;
 
     @media screen and (min-width: 768px) {
         flex-direction: row;
@@ -19,14 +18,17 @@ ul {
         padding: 32px;
         justify-content: center;
         align-items: center;
-        width: 770px;
+        width: 768px;
         gap: 32px;
     }
 
     @media screen and (min-width: 1268px) {
-        width: 1600px;
+        width: 1220px;
         row-gap: 32px;
         column-gap: 16px;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 0;
     }
 
     .film-box {
@@ -35,7 +37,6 @@ ul {
         height: 443px;
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: flex-start;
 
         @media screen and (min-width: 768px) {
