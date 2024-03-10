@@ -1,2 +1,16 @@
 @import './common';
-@import './example';
+@import './header';
+@import './main';
+@import './modal';
+
+
+:root {
+    --font-family: 'Roboto' , sans-serif;
+    --light-gray-background: #F7F7F7;
+    --red-colour: #B92F2C;
+    --dark-gray-color:#545454;
+    --black-color:#000000;
+    --white-color:#FFFFFF;
+    --middle-gray-color:#8C8C8C;
+    --orange-color: #ff6b08;
+}
