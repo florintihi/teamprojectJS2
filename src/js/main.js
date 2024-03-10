@@ -1,4 +1,4 @@
-const ul = document.querySelector('.main-container');
+const ul = document.querySelector('ul');
 const apiKey = '48ef3a20ec8d887e9b9ced5296a0c50a';
 const urlFetch = `https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`;
 const genresUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`;
@@ -34,29 +34,28 @@ fetch(genresUrl, options)
           const filmInfoContainer = document.createElement('div');
           filmInfoContainer.classList.add('film-info-container');
 
-          const filmName = document.createElement('p');
+          const filmName = document.createElement('h2');
           filmName.classList.add('film-name');
-          // TODO: UNELE TITLURI NU SUNT AFISATE
+
           filmName.textContent = film.title;
           filmInfoContainer.appendChild(filmName);
 
           const filmRating = document.createElement('p');
           filmRating.classList.add('film-rating');
-          // TODO: DACA EXISTA UN SINGUR GEN, SA NU AFISEZE VIRGULA
+
+
           const genresNames = film.genre_ids.map(genreId => genresMap[genreId]);
-          // TODO: DACA E 8.0 SA AFISEZE DOAR 8
+          let formatedGenres = genresNames.length > 2 ? `${genresNames.slice(0, 2).join(', ')}, Other` : genresNames.join(', ');
           const releaseYear = new Date(film.release_date).getFullYear();
           const rating = film.vote_average.toFixed(1);
 
-          filmRating.textContent = `${genresNames.join(
-            ', '
-          )} | ${releaseYear} ${rating}`;
+          filmRating.innerHTML = `${formatedGenres} | ${releaseYear} <p class="rating-display">${rating}</p>`;
+
           filmInfoContainer.appendChild(filmRating);
 
           liElement.appendChild(filmInfoContainer);
 
           ul.append(liElement);
-          console.log(data);
         });
       })
       .catch(err => console.log(err));
