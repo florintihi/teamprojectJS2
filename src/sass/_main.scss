@@ -5,14 +5,13 @@
 }
 
 
-ul {
+.ul {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 20px;
     row-gap: 20px;
-
 
     @media screen and (min-width: 768px) {
         flex-direction: row;
@@ -76,6 +75,7 @@ ul {
         }
     
         .film-name {
+
             font-family: var(--font-family);
             font-size: 20px;
             font-weight: 500;
@@ -120,3 +120,4 @@ ul {
     transition: box-shadow .30s;
     cursor: pointer;
 }
+

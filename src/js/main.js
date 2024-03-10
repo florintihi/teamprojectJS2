@@ -34,7 +34,6 @@ fetch(genresUrl, options)
           const filmInfoContainer = document.createElement('div');
           filmInfoContainer.classList.add('film-info-container');
 
-
           const filmName = document.createElement('h2');
           filmName.classList.add('film-name');
 
@@ -43,6 +42,7 @@ fetch(genresUrl, options)
 
           const filmRating = document.createElement('p');
           filmRating.classList.add('film-rating');
+
 
           const genresNames = film.genre_ids.map(genreId => genresMap[genreId]);
           let formatedGenres = genresNames.length > 2 ? `${genresNames.slice(0, 2).join(', ')}, Other` : genresNames.join(', ');
