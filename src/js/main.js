@@ -1,4 +1,4 @@
-const ul = document.querySelector('ul');
+const ul = document.querySelector('.cards-wrapper');
 const apiKey = '48ef3a20ec8d887e9b9ced5296a0c50a';
 const urlFetch = `https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`;
 const genresUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`;
@@ -43,9 +43,11 @@ fetch(genresUrl, options)
           const filmRating = document.createElement('p');
           filmRating.classList.add('film-rating');
 
-
           const genresNames = film.genre_ids.map(genreId => genresMap[genreId]);
-          let formatedGenres = genresNames.length > 2 ? `${genresNames.slice(0, 2).join(', ')}, Other` : genresNames.join(', ');
+          let formatedGenres =
+            genresNames.length > 2
+              ? `${genresNames.slice(0, 2).join(', ')}, Other`
+              : genresNames.join(', ');
           const releaseYear = new Date(film.release_date).getFullYear();
           const rating = film.vote_average.toFixed(1);
 
