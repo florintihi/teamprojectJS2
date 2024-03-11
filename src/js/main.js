@@ -10,7 +10,7 @@ const options = {
   },
 };
 
-async function fetchData() {
+export async function fetchData() {
   try {
     const genresResponse = await fetch(genresUrl, options);
     const genreData = await genresResponse.json();
