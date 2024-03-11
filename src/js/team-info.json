@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Florin Tihi",
+    "role": "Team Leader"
+  },
+  {
+    "name": "Razvan Barzalea",
+    "role": "Scrum Master",
+    "img": "../images/developer.jpeg"
+  },
+  {
+    "name": "Alexandru Pustan",
+    "role": "Developer"
+  },
+  {
+    "name": "Roxana Mindreci",
+    "role": "Developer"
+  },
+  {
+    "name": "Zenaida Chiuariu",
+    "role": "Developer"
+  },
+  {
+    "name": "Ovidiu Bodean",
+    "role": "Developer"
+  }
+]
