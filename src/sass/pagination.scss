@@ -1,0 +1,18 @@
+.button-wrapper {
+  padding: 25px 15px;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+.previousBtn,
+.nextBtn {
+  background-color: rgb(255, 102, 0);
+  border: 0;
+  padding: 10px 15px;
+  border-radius: 10%;
+  &:hover,
+  &:focus {
+    box-shadow: 7px 7px 11px 0px rgba(0, 0, 0, 0.1);
+  }
+}

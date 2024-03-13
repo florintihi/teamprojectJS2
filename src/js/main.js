@@ -1,10 +1,9 @@
 import { fetchMoviesData } from './fetch-data.js';
+export const ul = document.querySelector('.cards-wrapper');
 
 export async function fetchFilmData() {
   try {
     const { data, genresMap } = await fetchMoviesData();
-
-    const ul = document.querySelector('.cards-wrapper');
 
     data.results.forEach(film => {
       const liElement = document.createElement('li');
@@ -29,7 +28,9 @@ export async function fetchFilmData() {
 
       const genresNames = film.genre_ids.map(genreId => genresMap[genreId]);
       let formattedGenres =
-        genresNames.length > 2 ? `${genresNames.slice(0, 2).join(', ')}, Other`: genresNames.join(', ');
+        genresNames.length > 2
+          ? `${genresNames.slice(0, 2).join(', ')}, Other`
+          : genresNames.join(', ');
       const releaseYear = new Date(film.release_date).getFullYear();
       const rating = film.vote_average.toFixed(1);
 
