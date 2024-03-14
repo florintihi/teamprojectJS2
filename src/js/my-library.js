@@ -9,6 +9,8 @@ watchedFilms.classList.add('toggle-button');
 const queuedFilms = document.createElement('button');
 queuedFilms.textContent = 'Queued Films';
 queuedFilms.classList.add('toggle-button');
+test = document.querySelector('.test')
+
 
 fetchFilmData()
     .then(() => {
@@ -56,8 +58,8 @@ fetchFilmData()
     
         if (myLibraryButton.classList.contains('active')) {
             showToggleButtons();
-            ul.insertAdjacentElement('afterbegin', watchedFilms);
-            ul.insertAdjacentElement('afterbegin', queuedFilms);
+            test.appendChild(watchedFilms);
+            test.appendChild(queuedFilms);
         }
     });
     
