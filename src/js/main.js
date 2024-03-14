@@ -38,6 +38,23 @@ export async function fetchFilmData() {
 
       filmInfoContainer.appendChild(filmRating);
       liElement.appendChild(filmInfoContainer);
+
+
+      const buttonDiv = document.createElement('div')
+      const watchedButton = document.createElement('button')
+      watchedButton.classList.add('watched-button')
+      watchedButton.textContent = 'Add to Watched'
+      const queuedButton = document.createElement('button')
+      queuedButton.classList.add('queued-button')
+      queuedButton.textContent = 'Add to Que'
+      const clearLibrary = document.createElement('button')
+      clearLibrary.classList.add('clear-library')
+      clearLibrary.textContent = 'Clear'
+      buttonDiv.appendChild(watchedButton)
+      buttonDiv.appendChild(queuedButton)
+      buttonDiv.appendChild(clearLibrary)
+      liElement.appendChild(buttonDiv)
+
       ul.append(liElement);
     });
   } catch (error) {
@@ -45,4 +62,3 @@ export async function fetchFilmData() {
   }
 }
 
-fetchFilmData();

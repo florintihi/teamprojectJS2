@@ -1,6 +1,5 @@
 export let pageNumber = 1;
 const apiKey = '48ef3a20ec8d887e9b9ced5296a0c50a';
-// const urlFetch = `https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}&page=${pageNumber}`;
 const genresUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`;
 const options = {
   method: 'GET',
