@@ -1,6 +1,6 @@
+
 export let pageNumber = 1;
 const apiKey = '48ef3a20ec8d887e9b9ced5296a0c50a';
-// const urlFetch = `https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}&page=${pageNumber}`;
 const genresUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`;
 const options = {
   method: 'GET',
@@ -10,8 +10,14 @@ const options = {
   },
 };
 
-export async function fetchMoviesData() {
-  const urlFetch = `https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}&page=${pageNumber}`;
+export async function fetchMoviesData(searchTerm = '') {
+  let urlFetch;
+  if (searchTerm.trim() === '') {
+    urlFetch = `https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}&page=${pageNumber}`;
+  } else {
+    urlFetch = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchTerm}&page=${pageNumber}`;
+  }
+  
   try {
     const genresResponse = await fetch(genresUrl, options);
     const genreData = await genresResponse.json();
@@ -31,39 +37,3 @@ export async function fetchMoviesData() {
     throw error;
   }
 }
-
-import { fetchFilmData, ul } from './main';
-
-const prevButton = document.querySelector('.previousBtn');
-const nextButton = document.querySelector('.nextBtn');
-
-async function getNextPage() {
-  try {
-    pageNumber++;
-    ul.innerHTML = '';
-    const { data, genresMap } = await fetchMoviesData();
-    fetchFilmData(data, genresMap);
-    console.log(pageNumber);
-  } catch (err) {
-    console.log(err);
-  }
-}
-
-nextButton.addEventListener('click', getNextPage);
-
-async function getPrevPage() {
-  try {
-    if (pageNumber > 1) {
-      prevButton.disabled = false;
-      pageNumber--;
-      ul.innerHTML = '';
-      const { data, genresMap } = await fetchMoviesData();
-      fetchFilmData(data, genresMap);
-      console.log(pageNumber);
-    }
-  } catch (err) {
-    console.log(err);
-  }
-}
-
-prevButton.addEventListener('click', getPrevPage);
