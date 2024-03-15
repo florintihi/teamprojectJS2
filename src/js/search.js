@@ -5,9 +5,9 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 const searchInput = document.getElementById('movie-search');
 const ul = document.querySelector('.cards-wrapper');
 
-const searchMovies = debounce(async (searchTerm) => {
+const searchMovies = debounce(async (searchTerm, genre) => {
     try {
-        const { data } = await fetchMoviesData(searchTerm); 
+        const { data, genresMap } = await fetchMoviesData(searchTerm, genre);
 
         ul.innerHTML = '';
 
@@ -20,7 +20,7 @@ const searchMovies = debounce(async (searchTerm) => {
                     <div class="film-info-container">
                         <h2 class="film-name">${movie.title}</h2>
                         <p class="film-rating">
-                            ${movie.genre_ids.join(', ')} | ${new Date(movie.release_date).getFullYear()} 
+                            ${movie.genre_ids.map(id => genresMap[id]).join(', ')} | ${new Date(movie.release_date).getFullYear()} 
                             <span class="rating-display">${movie.vote_average.toFixed(1)}</span>
                         </p>
                     </div>
@@ -38,5 +38,6 @@ const searchMovies = debounce(async (searchTerm) => {
 
 searchInput.addEventListener('input', (event) => {
     const searchTerm = event.target.value.trim();
-    searchMovies(searchTerm);
+    const genre = ''; // Aici trebuie să extragi genul din altă sursă, cum ar fi un element select
+    searchMovies(searchTerm, genre);
 });
