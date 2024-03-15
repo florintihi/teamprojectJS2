@@ -3,43 +3,58 @@ import { fetchFilmData, ul } from './main.js';
 let filmBoxElements;
 const myLibraryButton = document.querySelector('.library-page');
 const homeButton = document.querySelector('.home-page')
-const watchedFilms = document.createElement('button');
-watchedFilms.textContent = 'Watched Films';
-watchedFilms.classList.add('toggle-button');
-const queuedFilms = document.createElement('button');
-queuedFilms.textContent = 'Queued Films';
-queuedFilms.classList.add('toggle-button');
+const watchedFilmsButton = document.createElement('button');
+watchedFilmsButton.textContent = 'Watched Films';
+watchedFilmsButton.classList.add('toggle-button');
+const queuedFilmsButton = document.createElement('button');
+queuedFilmsButton.textContent = 'Queued Films';
+queuedFilmsButton.classList.add('toggle-button');
 myLibraryButtonWrapper = document.querySelector('.my-library-button-wrapper')
-
+const clearLibraryButton = document.createElement('button')
+clearLibraryButton.classList.add('.toggle-button')
+const clearLibraryWrapper = document.querySelector('.clear-library')
 
 fetchFilmData()
     .then(() => {
         filmBoxElements = ul.querySelectorAll('.film-box');
 
-        filmBoxElements.forEach(filmBoxElement => {
-            const watchedButton = filmBoxElement.querySelector('.watched-button');
-            watchedButton.addEventListener('click', () => {
-                if (filmBoxElement.classList.contains('watched')){
 
+        filmBoxElements.forEach(filmBoxElement => {
+            const addtoWatchButton = filmBoxElement.querySelector('.watched-button');
+            addtoWatchButton.addEventListener('click', () => {
+                if (filmBoxElement.classList.contains('watched')) {
                     filmBoxElement.classList.remove('watched');
-                    watchedButton.textContent = 'Add to Watched';
-                }
-                else {
+                    addtoWatchButton.textContent = 'Add to Watched';
+                } else {
                     filmBoxElement.classList.add('watched');
-                    watchedButton.textContent = 'Remove from Watched'
+                    addtoWatchButton.textContent = 'Remove from Watched';
+                }
+
+                if (watchedFilmsButton.classList.contains('active')) {
+                    filmBoxElement.style.display = 'none';
+                } else {
+                    filmBoxElement.style.display = ''; 
                 }
             });
 
+            
 
-            const queuedButton = filmBoxElement.querySelector('.queued-button');
-            queuedButton.addEventListener('click', () => {
+
+            const addToQueButton = filmBoxElement.querySelector('.queued-button');
+            addToQueButton.addEventListener('click', () => {
                 if (filmBoxElement.classList.contains('queued')) {
 
                     filmBoxElement.classList.remove('queued');
-                    queuedButton.textContent = 'Add to Que';
+                    addToQueButton.textContent = 'Add to Que';
                 } else {
                     filmBoxElement.classList.add('queued');
-                    queuedButton.textContent = 'Remove from Que';
+                    addToQueButton.textContent = 'Remove from Que';
+                }
+
+                if (queuedFilmsButton.classList.contains('active')) {
+                    filmBoxElement.style.display = 'none';
+                } else {
+                    filmBoxElement.style.display = ''; 
                 }
             });
 
@@ -52,33 +67,42 @@ fetchFilmData()
     .catch(err => console.log(err));
 
 
-
     myLibraryButton.addEventListener('click', () => {
         myLibraryButton.classList.toggle('active');
     
         if (myLibraryButton.classList.contains('active')) {
             showToggleButtons();
-            myLibraryButtonWrapper.appendChild(watchedFilms);
-            myLibraryButtonWrapper.appendChild(queuedFilms);
+            myLibraryButtonWrapper.appendChild(watchedFilmsButton);
+            myLibraryButtonWrapper.appendChild(queuedFilmsButton);
         }
     });
     
-    watchedFilms.addEventListener('click', () => {
-        watchedFilms.classList.toggle('active');
-        if (watchedFilms.classList.contains('active')) {
+    watchedFilmsButton.addEventListener('click', () => {
+        watchedFilmsButton.classList.toggle('active');
+        if (watchedFilmsButton.classList.contains('active')) {
+            clearLibraryWrapper.appendChild(clearLibraryButton);
+            clearLibraryButton.textContent = 'Remove all watched films'
             showWatched();
-            queuedFilms.classList.remove('active');
+            queuedFilmsButton.classList.remove('active')
+            clearLibraryButton.addEventListener('click', () => {
+                clearLibrary();
+            })
         }
     });
     
-    queuedFilms.addEventListener('click', () => {
-        queuedFilms.classList.toggle('active');
-        if (queuedFilms.classList.contains('active')) {
+    queuedFilmsButton.addEventListener('click', () => {
+        queuedFilmsButton.classList.toggle('active');
+        if (queuedFilmsButton.classList.contains('active')) {
             showQueued();
-            watchedFilms.classList.remove('active');
+            clearLibraryWrapper.appendChild(clearLibraryButton);
+            clearLibraryButton.textContent = 'Remove all queued films'
+            watchedFilmsButton.classList.remove('active');
+            clearLibraryButton.addEventListener('click', () => {
+                clearLibrary();
+            })
         }
     });
-    
+
 
 // Show functions 
 
@@ -113,22 +137,20 @@ function showToggleButtons() {
     })
 }
 
+function clearLibrary() {
+    filmBoxElements.forEach(filmBoxElement => {
+        const addtoWatchButton = filmBoxElement.querySelector('.watched-button');
+        const addToQueButton = filmBoxElement.querySelector('.queued-button');
+        if (watchedFilmsButton.classList.contains('active')) {
+            filmBoxElement.classList.remove('watched')
+            filmBoxElement.style.display = 'none';
+            addtoWatchButton.textContent = 'Add to Watch';
+        }    else if (queuedFilmsButton.classList.contains('active')) {        
+                filmBoxElement.classList.remove('queued')
+                filmBoxElement.style.display = 'none';
+                addToQueButton.textContent = 'Add to Que';
+            };
+    })
+}
 
-// TODO: Trebuie rezolvat butonul de clear sa fie afisat doar daca exista un film in queued sau watched si sa stearga doar elementele cu clasa respectiva
-// TODO: Codul functioneaza doar pentru pagina 1 nu si pt urmatoarele pagini
-// TODO: Trebuie adaugat local storage pt filmele adaugate deja in mylibrary 
 
-// function clearLibraryButton(filmBoxElement) {
-//     const clearButton = filmBoxElement.querySelector('.clear-library')
-//     clearButton.addEventListener('click', () => {
-//         if (watchedFilms.classList.contains('active')) {
-//             filmBoxElement.classList.remove('watched')
-//             filmBoxElement.remove()
-//         } else if (queuedFilms.classList.contains('queued')) {        
-//         filmBoxElement.classList.remove('queued')
-//         filmBoxElement.remove()
-//         };
-//     })
-// }
-
-// clearLibraryButton();
