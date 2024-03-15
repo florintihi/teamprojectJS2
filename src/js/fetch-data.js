@@ -10,12 +10,15 @@ const options = {
   },
 };
 
-export async function fetchMoviesData(searchTerm = '') {
+export async function fetchMoviesData(searchTerm = '', genre = '') {
   let urlFetch;
   if (searchTerm.trim() === '') {
     urlFetch = `https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}&page=${pageNumber}`;
   } else {
     urlFetch = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchTerm}&page=${pageNumber}`;
+    if (genre) {
+      urlFetch += `&with_genres=${genre}`;
+    }
   }
   
   try {

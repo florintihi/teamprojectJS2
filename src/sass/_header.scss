@@ -5,7 +5,7 @@
 .page-header {
     width: 100%;
     height: 460px;
-    border-radius: 15px; // добавила
+    border-radius: 15px;
     padding: 14px;
     background-image: url('../images/img-header-320@1x.png');
     background-repeat: no-repeat;
@@ -35,7 +35,8 @@
 }
 
 .header-button {
-    padding: 12 24 12 24;
+    padding: 12px 24px;
+    /* Corectare: am adăugat px */
     background-color: #ffffff;
     border-radius: 100px;
     border: none;
@@ -63,18 +64,21 @@
     color: #ffffff;
 }
 
-.library-button.active {
-    color: #ffffff;
-    background: #b92f2c;
-    box-shadow: 0px 0px 7px rgba(27, 27, 27, 0.15);
-    border-radius: 100px;
-}
-
+.library-button.active,
 .library-button:hover,
+.library-button:focus,
 .library-button:active,
-.library-button:focus {
-    background-color: #b92f2c;
+.clear-queue.active,
+.clear-queue:hover,
+.clear-queue:focus,
+.clear-queue:active,
+.clear-lists.active,
+/* Adăugare: pentru hover, focus, active */
+.clear-lists:hover,
+.clear-lists:focus,
+.clear-lists:active {
     color: #ffffff;
+    background-color: #b92f2c;
 }
 
 .search-input {
