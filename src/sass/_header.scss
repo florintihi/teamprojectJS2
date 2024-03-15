@@ -1,5 +1,5 @@
 :root {
-    --animation-cubic: cubic-bezier(0.4, 0, 0.2, 1);
+  --animation-cubic: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .page-header {
@@ -16,22 +16,23 @@
         height: 222px;
         background-image: url('../images/img-header-1200@1x.png');
     }
+
 }
 
 .page-header__menu {
-    display: flex;
-    justify-content: center;
-    gap: 4px;
-    margin-bottom: 8px;
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 8px;
 }
 
 @media screen and (min-width: 768px) {
-    .page-header__navigation {
-        display: flex;
-        flex-direction: row-reverse;
-        justify-content: start;
-        gap: 4px;
-    }
+  .page-header__navigation {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: start;
+    gap: 4px;
+  }
 }
 
 .header-button {
@@ -53,16 +54,17 @@
 }
 
 .header-button.active {
-    color: #ffffff;
-    background-color: #000000;
+  color: #ffffff;
+  background-color: #000000;
 }
 
 .nav-button:hover,
 .nav-button:active,
 .nav-button:focus {
-    background-color: #000000;
-    color: #ffffff;
+  background-color: #000000;
+  color: #ffffff;
 }
+
 
 .library-button.active,
 .library-button:hover,
@@ -79,81 +81,99 @@
 .clear-lists:active {
     color: #ffffff;
     background-color: #b92f2c;
+
 }
 
 .search-input {
-    font-family: 'Roboto', sans-serif;
-    padding: 10px 26px;
-    background-color: white;
-    border-radius: 100px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 14px;
-    color: black;
-    width: 252px;
-    height: 34px;
-    border: none;
-    outline: none;
+  font-family: 'Roboto', sans-serif;
+  padding: 10px 26px;
+  background-color: white;
+  border-radius: 100px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: black;
+  width: 252px;
+  height: 34px;
+  border: none;
+  outline: none;
 
-    @media screen and (min-width: 767px) {
-        width: 165px;
-        height: 38px;
-    }
+  @media screen and (min-width: 767px) {
+    width: 165px;
+    height: 38px;
+  }
 }
 
 .page-header__logo {
-    display: flex;
-    margin-top: 290px;
-    margin-left: 50px;
-    cursor: pointer;
+  display: flex;
+  margin-top: 290px;
+  margin-left: 50px;
+  cursor: pointer;
 
-    @media screen and (min-width: 768px) {
-        margin-top: 116px;
-        justify-content: flex-start;
-    }
+  @media screen and (min-width: 768px) {
+    margin-top: 116px;
+    justify-content: flex-start;
+  }
 }
 
 .logo-text {
-    font-family: 'Roboto', sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 32px;
-    line-height: 38px;
-    align-items: center;
-    text-align: center;
-    color: #ffffff;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 38px;
+  align-items: center;
+  text-align: center;
+  color: #ffffff;
 }
 
 .page-header__movie-menu {
-    display: flex;
-    justify-content: flex-end;
-    position: absolute;
-    top: 390px;
-    left: 55px;
-    gap: 4px;
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  top: 390px;
+  left: 55px;
+  gap: 4px;
 
-    @media screen and (min-width: 768px) {
-        left: 430px;
-    }
+  @media screen and (min-width: 768px) {
+    left: 430px;
+  }
 
-    @media screen and (min-width: 1280px) {
-        left: 950px;
-    }
+  @media screen and (min-width: 1280px) {
+    left: 950px;
+  }
 }
 
 .page-header__container {
-    position: relative;
+  position: relative;
 }
 
 @media screen and (min-width: 768px) {
-    .page-header__movie-menu {
-        position: absolute;
-        top: 0;
-        right: 30;
-    }
+  .page-header__movie-menu {
+    position: absolute;
+    top: 0;
+    right: 30;
+  }
 }
 
 .is-hidden {
-    display: none;
+  display: none;
+}
+
+button.dark-mode.active {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  svg {
+    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+button.dark-mode {
+  background-color: transparent;
+  border: none;
+  svg {
+    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
 }
