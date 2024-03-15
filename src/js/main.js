@@ -41,18 +41,14 @@ export async function fetchFilmData() {
 
 
       const buttonDiv = document.createElement('div')
-      const watchedButton = document.createElement('button')
-      watchedButton.classList.add('watched-button')
-      watchedButton.textContent = 'Add to Watched'
-      const queuedButton = document.createElement('button')
-      queuedButton.classList.add('queued-button')
-      queuedButton.textContent = 'Add to Que'
-      const clearLibrary = document.createElement('button')
-      clearLibrary.classList.add('clear-library')
-      clearLibrary.textContent = 'Clear'
-      buttonDiv.appendChild(watchedButton)
-      buttonDiv.appendChild(queuedButton)
-      buttonDiv.appendChild(clearLibrary)
+      const addToWatchButton = document.createElement('button')
+      addToWatchButton.classList.add('watched-button')
+      addToWatchButton.textContent = 'Add to Watched'
+      const addToQueButton = document.createElement('button')
+      addToQueButton.classList.add('queued-button')
+      addToQueButton.textContent = 'Add to Que'
+      buttonDiv.appendChild(addToWatchButton)
+      buttonDiv.appendChild(addToQueButton)
       liElement.appendChild(buttonDiv)
 
       ul.append(liElement);
