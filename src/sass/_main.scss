@@ -6,6 +6,35 @@
   margin-top: 20px;
 }
 
+.library-wrapper {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+
+
+  .track-films {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+    order: 1;
+  
+      p {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100px;
+        background-color: #f1eda9;
+      }
+  }
+}
+
+
+
 .my-library-button-wrapper {
   display: flex;
   gap: 20px; 
