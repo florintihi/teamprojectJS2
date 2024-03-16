@@ -4,3 +4,4 @@ import './js/modal.js';
 import './js/footer.js';
 import './js/my-library.js';
 import './js/dark-mode.js';
+import './js/pagination.js';

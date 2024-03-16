@@ -1,5 +1,6 @@
-
-export let pageNumber = 1;
+let pageNumber = 1;
+export const inc = () => pageNumber++;
+export const des = () => pageNumber--;
 const apiKey = '48ef3a20ec8d887e9b9ced5296a0c50a';
 const genresUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`;
 const options = {
@@ -20,7 +21,7 @@ export async function fetchMoviesData(searchTerm = '', genre = '') {
       urlFetch += `&with_genres=${genre}`;
     }
   }
-  
+
   try {
     const genresResponse = await fetch(genresUrl, options);
     const genreData = await genresResponse.json();
