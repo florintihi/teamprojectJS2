@@ -11,7 +11,7 @@ async function getNextPage() {
     ul.innerHTML = '';
     const { data, genresMap } = await fetchMoviesData();
     fetchFilmData(data, genresMap);
-    console.log(inc());
+    console.log(pageNumber);
   } catch (err) {
     console.log(err);
   }
@@ -23,11 +23,13 @@ async function getPrevPage() {
   try {
     // prevButton.disabled = true
     // pageNumber--;
-    des();
-    ul.innerHTML = '';
-    const { data, genresMap } = await fetchMoviesData();
-    fetchFilmData(data, genresMap);
-    console.log(des());
+    if (pageNumber > 1) {
+      des();
+      ul.innerHTML = '';
+      const { data, genresMap } = await fetchMoviesData();
+      fetchFilmData(data, genresMap);
+      console.log(pageNumber);
+    }
   } catch (err) {
     console.log(err);
   }
