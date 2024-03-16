@@ -1,6 +1,6 @@
-let pageNumber = 1;
-export const inc = () => pageNumber++;
-export const des = () => pageNumber--;
+export let pageNumber = 1;
+export const inc = () => (pageNumber += 1);
+export const des = () => (pageNumber -= 1);
 const apiKey = '48ef3a20ec8d887e9b9ced5296a0c50a';
 const genresUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`;
 const options = {
