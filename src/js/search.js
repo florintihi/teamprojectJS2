@@ -14,13 +14,24 @@ const searchMovies = debounce(async (searchTerm, genre) => {
         if (data.results.length > 0) {
             data.results.forEach(movie => {
                 const li = document.createElement('li');
+                
                 li.classList.add('film-box'); 
+                const genresNames = movie.genre_ids.map(genreId => genresMap[genreId]);
+                let formattedGenres = [];
+                  genresNames.length > 2
+                  if (genresNames.length > 2) {
+                    formattedGenres = `${genresNames.slice(0, 2).join(', ')}, Other`;
+                  } else if (genresNames.length < 1) {
+                    formattedGenres = 'Other';
+                  } else {
+                    formattedGenres = genresNames.join(', ');
+                  }
                 li.innerHTML = `
                     <img class="film-img" alt="Movie cover photo" src="https://image.tmdb.org/t/p/w500${movie.poster_path}">
                     <div class="film-info-container">
                         <h2 class="film-name">${movie.title}</h2>
                         <p class="film-rating">
-                            ${movie.genre_ids.map(id => genresMap[id]).join(', ')} | ${new Date(movie.release_date).getFullYear()} 
+                            ${formattedGenres} | ${new Date(movie.release_date).getFullYear()} 
                             <span class="rating-display">${movie.vote_average.toFixed(1)}</span>
                         </p>
                     </div>
