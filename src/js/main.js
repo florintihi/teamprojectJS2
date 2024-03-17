@@ -106,32 +106,67 @@ export async function fetchFilmData() {
     console.error('Error:', error);
   }
 }
+
+
+export let queuedCounter = 0;
+export let watchedCounter = 0;
+export const watchedCounterElement = document.createElement('li');
+export const queuedCounterElement = document.createElement('li');
+queuedCounterElement.textContent = `Films in que: ${queuedCounter}.`
+watchedCounterElement.textContent = `Watched films: ${watchedCounter}.`
+queuedCounterElement.classList.add('track-number');
+watchedCounterElement.classList.add('track-number');
+export const clearLibraryButton = document.createElement('button');
+clearLibraryButton.classList.add('.toggle-button');
+
+
 export function increaseWatched(){
   watchedCounter++
-  watchedCounterElement.textContent = `Watched: ${watchedCounter} films.`
+  watchedCounterElement.textContent = `Watched films: ${watchedCounter}`
 
 }
 
 export function increaseQueued(){
   queuedCounter++
-  queuedCounterElement.textContent = `Films in que: ${queuedCounter}.`
+  queuedCounterElement.textContent = `Films in que: ${queuedCounter}`
 }
 
-export function decreaseWatched(){
-  watchedCounter--
-  watchedCounterElement.textContent = `Watched: ${watchedCounter} films.`
+export function decreaseWatched() {
+  watchedCounter--;
+  watchedCounterElement.textContent = `Watched films: ${watchedCounter}`;
+
+  if (watchedCounter === 0) {
+      clearLibraryButton.style.display = 'none';
+  }
 }
 
-export function decreaseQueued(){
-  queuedCounter--
-  queuedCounterElement.textContent = `Films in que: ${queuedCounter}.`
+export function decreaseQueued() {
+  queuedCounter--;
+  queuedCounterElement.textContent = `Films in que: ${queuedCounter}`;
+
+  if (queuedCounter === 0) {
+      clearLibraryButton.style.display = 'none';
+  }
 }
 
-export let queuedCounter = 0;
-export let watchedCounter = 0;
-export const watchedCounterElement = document.createElement('p');
-export const queuedCounterElement = document.createElement('p');
-queuedCounterElement.textContent = `Films in que: ${queuedCounter}.`
-watchedCounterElement.textContent = `Watched: ${watchedCounter} films.`
+clearLibraryButton.addEventListener('click', () => {
+  if (watchedFilmsButton.classList.contains('active')) {
+      clearWatchedLibrary();
+  } else if (queuedFilmsButton.classList.contains('active')) {
+      clearQueuedLibrary();
+  }
+});
+
+function clearWatchedLibrary() {
+  watchedCounter = 0;
+  watchedCounterElement.textContent = `Watched films: ${watchedCounter}`;
+  clearLibraryButton.style.display = 'none';
+}
+
+function clearQueuedLibrary() {
+  queuedCounter = 0;
+  queuedCounterElement.textContent = `Films in que: ${queuedCounter}`;
+  clearLibraryButton.style.display = 'none';
+}
 
 
