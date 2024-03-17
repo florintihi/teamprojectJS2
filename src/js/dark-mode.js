@@ -4,13 +4,15 @@ export function initializeDarkModeToggle() {
   const moon = document.querySelector('.moon');
   const bodyStyle = document.body;
   const filmBoxes = document.querySelectorAll('.film-box');
+  const mainSection = document.querySelector('.main-section');
 
   // set dark mode
   let setDarkMode = function () {
     sun.style.visibility = 'hidden';
     moon.style.visibility = 'visible';
     BUTTON_DARK_MODE.classList.remove('active');
-    bodyStyle.style.backgroundColor = '#545454';
+    bodyStyle.style.backgroundColor = '#121212';
+    mainSection.style.backgroundColor = '#121212';
     filmBoxes.forEach(box => {
       box.style.backgroundColor = '#F7F7F7';
     });
@@ -23,8 +25,9 @@ export function initializeDarkModeToggle() {
     sun.style.visibility = 'visible';
     BUTTON_DARK_MODE.classList.add('active');
     bodyStyle.style.backgroundColor = '#F7F7F7';
+    mainSection.style.backgroundColor = '#7e1616';
     filmBoxes.forEach(box => {
-      box.style.backgroundColor = '#545454';
+      box.style.backgroundColor = '#ec7532';
     });
     localStorage.setItem('darkMode', 'off');
   };
