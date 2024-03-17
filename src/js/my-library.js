@@ -11,7 +11,6 @@ const clearLibraryButtonWrapper = document.querySelector('.clear-library-button'
 
 homeButton.addEventListener('click', () => {
     homeButton.classList.add('active');
-    location.reload();
 })
 
 fetchFilmData()
