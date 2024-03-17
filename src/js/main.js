@@ -123,12 +123,13 @@ clearLibraryButton.classList.add('.toggle-button');
 export function increaseWatched(){
   watchedCounter++
   watchedCounterElement.textContent = `Watched films: ${watchedCounter}`
-
+  localStorage.setItem('watchedCounter', watchedCounter);
 }
 
 export function increaseQueued(){
   queuedCounter++
   queuedCounterElement.textContent = `Films in que: ${queuedCounter}`
+  localStorage.setItem('queuedCounter', queuedCounter);
 }
 
 export function decreaseWatched() {
@@ -169,4 +170,14 @@ function clearQueuedLibrary() {
   clearLibraryButton.style.display = 'none';
 }
 
+window.addEventListener('DOMContentLoaded', () => {
+  if (localStorage.getItem('watchedCounter')) {
+    watchedCounter = parseInt(localStorage.getItem('watchedCounter'));
+    watchedCounterElement.textContent = `Watched films: ${watchedCounter}`;
+  }
 
+  if (localStorage.getItem('queuedCounter')) {
+    queuedCounter = parseInt(localStorage.getItem('queuedCounter'));
+    queuedCounterElement.textContent = `Films in que: ${queuedCounter}`;
+  }
+});

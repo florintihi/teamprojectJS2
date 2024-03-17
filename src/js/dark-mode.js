@@ -26,7 +26,7 @@ export function initializeDarkModeToggle() {
     BUTTON_DARK_MODE.classList.add('active');
     bodyStyle.style.backgroundColor = '#F7F7F7';
     mainSection.style.backgroundColor = '#7e1616';
-    filmBoxes.forEach(box => {
+    filmBoxes.forEach(box => {       
       box.style.backgroundColor = '#ec7532';
     });
     localStorage.setItem('darkMode', 'off');
@@ -35,7 +35,7 @@ export function initializeDarkModeToggle() {
   // toggle dark/light mode
   let toggleDarkMode = function () {
     if (BUTTON_DARK_MODE.classList.contains('active')) {
-      setDarkMode();
+      setDarkMode()       ;
     } else {
       setLightMode();
     }
