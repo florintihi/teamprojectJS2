@@ -1,11 +1,19 @@
 <header class="page-header">
   <div class="container page-header__container">
     <nav class="page-header__navigation">
+      <button class="dark-mode active">
+        <svg class="dark-mode" width="40px" height="40px">
+          <use class="moon" href="images/dark-mode.svg#icon-moon"></use>
+          <use class="sun" href="images/dark-mode.svg#icon-sun"></use>
+        </svg>
+      </button>
       <ul class="page-header__menu">
         <li class="page-header__item">
-          <button class="header-button home-page nav-button">
-            Home
-          </button>
+          <a href="./index.html"
+            ><button class="header-button home-page nav-button active">
+              Home
+            </button></a
+          >
         </li>
         <li class="page-header__item">
           <button class="header-button library-page nav-button">
@@ -13,13 +21,6 @@
           </button>
         </li>
       </ul>
-
-      <button class="dark-mode active">
-        <svg class="dark-mode" width="40px" height="40px">
-          <use class="moon" href="images/dark-mode.svg#icon-moon"></use>
-          <use class="sun" href="images/dark-mode.svg#icon-sun"></use>
-        </svg>
-      </button>
 
       <input
         class="search-input"
@@ -34,17 +35,8 @@
         <svg class="page-header__logo_icon" width="48" height="48">
           <use href="./images/icons.svg#logo-icon"></use>
         </svg>
-        <p class="logo-text">Filmoteka</p>
+        <a href="./index.html"><p class="logo-text">Filmoteka</p></a>
       </div>
-
-      <ul class="page-header__movie-menu my-library is-hidden">
-        <li class="page-header__movie-menu-item">
-          <button class="header-button library-button watched">Watched</button>
-        </li>
-        <li class="page-header__movie-menu-item">
-          <button class="header-button library-button queue">Queue</button>
-        </li>
-      </ul>
     </div>
   </div>
 </header>
