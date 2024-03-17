@@ -1,6 +1,9 @@
+import Notiflix from 'notiflix';
+
 export let pageNumber = 1;
 export const inc = () => (pageNumber += 1);
 export const des = () => (pageNumber -= 1);
+
 const apiKey = '48ef3a20ec8d887e9b9ced5296a0c50a';
 const genresUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`;
 const options = {
@@ -23,6 +26,8 @@ export async function fetchMoviesData(searchTerm = '', genre = '') {
   }
 
   try {
+    Notiflix.Loading.dots('Waiting...');
+
     const genresResponse = await fetch(genresUrl, options);
     const genreData = await genresResponse.json();
 
@@ -35,8 +40,12 @@ export async function fetchMoviesData(searchTerm = '', genre = '') {
     const data = await moviesResponse.json();
     data.results.sort((a, b) => b.vote_average - a.vote_average);
 
+    Notiflix.Loading.remove();
+
     return { data, genresMap };
   } catch (error) {
+    Notiflix.Loading.remove();
+
     console.error('Error fetching data:', error);
     throw error;
   }
