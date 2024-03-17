@@ -126,7 +126,7 @@ export function librarySections() {
             filmBoxElement.classList.remove('watched')
             filmBoxElement.style.display = 'none';
             addtoWatchButton.textContent = 'Add to Watch';
-            watchedCounter = 0;
+            let watchedCounter = 0;
             watchedCounterElement.textContent = `Watched films: ${watchedCounter}`;
             clearLibraryButton.style.display = 'none';
     
@@ -134,7 +134,7 @@ export function librarySections() {
             filmBoxElement.classList.remove('queued')
             filmBoxElement.style.display = 'none';
             addToQueButton.textContent = 'Add to Que';
-            queuedCounter = 0;
+            let queuedCounter = 0;
             queuedCounterElement.textContent = `Films in queue: ${queuedCounter}`;
         }
     })
