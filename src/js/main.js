@@ -50,7 +50,8 @@ export async function fetchFilmData() {
       filmInfoContainer.appendChild(filmRating);
       liElement.appendChild(filmInfoContainer);
 
-      const buttonDiv = document.createElement('div')
+      const buttonDiv = document.createElement('div');
+      buttonDiv.classList.add('wrapper-for-buttons')
       const addToWatchButton = document.createElement('button')
       addToWatchButton.classList.add('watched-button')
       addToWatchButton.textContent = 'Add to Watched'
@@ -180,4 +181,8 @@ window.addEventListener('DOMContentLoaded', () => {
     queuedCounter = parseInt(localStorage.getItem('queuedCounter'));
     queuedCounterElement.textContent = `Films in que: ${queuedCounter}`;
   }
+
+  
+  watchedCounter = watchedCounter || 0;
+  queuedCounter = queuedCounter || 0;
 });
