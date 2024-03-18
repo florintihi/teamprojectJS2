@@ -1,5 +1,4 @@
 import { fetchFilmData, ul, queuedCounterElement, watchedCounterElement, queuedCounter, watchedCounter, watchedFilmsButton, queuedFilmsButton, clearLibraryButton } from './main.js';
-
 const homeButton = document.querySelector('.home-page');
 const libraryWrapper = document.querySelector('.library-wrapper');
 const myLibraryButton = document.querySelector('.library-page');
@@ -8,20 +7,16 @@ const trackWatchedWrapper = document.querySelector('.track-watched');
 const trackWatched = document.createElement('p')
 const trackQueued = document.createElement('p')
 const clearLibraryButtonWrapper = document.querySelector('.clear-library-button')
-
 homeButton.addEventListener('click', () => {
     homeButton.classList.add('active');
+    location.reload();
 })
-
 fetchFilmData()
     .then(() => {
         filmBoxElements = ul.querySelectorAll('.film-box');
     });
-
 export function librarySections() {
-
         showLibrary();
-        
         watchedFilmsButton.addEventListener('click', () => {
             watchedFilmsButton.classList.toggle('active');
             myLibraryButton.classList.remove('active');
@@ -31,47 +26,39 @@ export function librarySections() {
             if (watchedFilmsButton.classList.contains('active')) {
                 if (queuedCounter === 0 && watchedCounter === 0) {
                     clearLibraryButton.style.display = 'none';
-                } 
+                }
                 clearLibraryButtonWrapper.appendChild(clearLibraryButton);
                 clearLibraryButton.textContent = 'Remove all watched films'
                 showWatched();
                 queuedCounterElement.style.display = 'none';
                 watchedCounterElement.style.display = 'none';
-                
                 queuedFilmsButton.classList.remove('active')
                 clearLibraryButton.addEventListener('click', () => {
                 clearLibrary();
                 })
             }
         });
-        
         queuedFilmsButton.addEventListener('click', () => {
             queuedFilmsButton.classList.toggle('active');
             myLibraryButton.classList.remove('active');
             libraryWrapper.classList.remove('library-active');
             if (queuedFilmsButton.classList.contains('active')) {
-            
                 if (queuedCounter === 0 && watchedCounter === 0) {
                     clearLibraryButton.style.display = 'none';
-                } 
-
+                }
                 clearLibraryButtonWrapper.appendChild(clearLibraryButton);
                 clearLibraryButton.textContent = 'Remove all queued films'
                 showQueued();
                 queuedCounterElement.style.display = 'none';
                 watchedCounterElement.style.display = 'none';
-
                 watchedFilmsButton.classList.remove('active');
-
                 clearLibraryButton.addEventListener('click', () => {
                 clearLibrary();
                 })
             }
         });
     }
-      
     librarySections();
-    
  export function showWatched() {
       const filmBoxElements = ul.querySelectorAll('.film-box');
       filmBoxElements.forEach(filmBoxElement => {
@@ -80,7 +67,6 @@ export function librarySections() {
           } else {
               filmBoxElement.style.display = 'none';
           }
-
           if (watchedCounter === 0) {
             clearLibraryButton.style.display = 'none';
         } else {
@@ -88,7 +74,6 @@ export function librarySections() {
         }
       });
   }
-  
  export function showQueued() {
       const filmBoxElements = ul.querySelectorAll('.film-box');
       filmBoxElements.forEach(filmBoxElement => {
@@ -97,16 +82,13 @@ export function librarySections() {
           } else {
               filmBoxElement.style.display = 'none';
           }
-
             if (queuedCounter === 0) {
                 clearLibraryButton.style.display = 'none';
             } else {
                 clearLibraryButton.style.display = 'block';
             }
-  
       });
   }
-  
  export function showToggleButtons() {
       const filmBoxElements = ul.querySelectorAll('.film-box');
       filmBoxElements.forEach(button => {
@@ -115,9 +97,7 @@ export function librarySections() {
           }
       });
   }
-    
  export function clearLibrary() {
-
     const filmBoxElements = ul.querySelectorAll('.film-box');
     filmBoxElements.forEach(filmBoxElement => {
         const addtoWatchButton = filmBoxElement.querySelector('.watched-button');
@@ -129,7 +109,6 @@ export function librarySections() {
             let watchedCounter = 0;
             watchedCounterElement.textContent = `Watched films: ${watchedCounter}`;
             clearLibraryButton.style.display = 'none';
-    
         } else if (queuedFilmsButton.classList.contains('active')) {
             filmBoxElement.classList.remove('queued')
             filmBoxElement.style.display = 'none';
@@ -139,7 +118,6 @@ export function librarySections() {
         }
     })
   }
-
  export function showLibrary() {
     myLibraryButton.addEventListener('click', () =>{
         myLibraryButton.classList.toggle('active');
@@ -161,5 +139,3 @@ export function librarySections() {
         }
     })
   }
-
-  
