@@ -6,7 +6,7 @@ watchedFilmsButton.classList.add('toggle-button');
 export const queuedFilmsButton = document.createElement('button');
 queuedFilmsButton.textContent = 'Queued Films';
 queuedFilmsButton.classList.add('toggle-button');
-myLibraryButtonWrapper = document.querySelector('.my-library-button-wrapper')
+export const myLibraryButtonWrapper = document.querySelector('.my-library-button-wrapper')
 
 
 export async function fetchFilmData() {
