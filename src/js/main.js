@@ -5,8 +5,7 @@ watchedFilmsButton.textContent = 'Watched Films';
 watchedFilmsButton.classList.add('toggle-button');
 export const queuedFilmsButton = document.createElement('button');
 queuedFilmsButton.textContent = 'Queued Films';
-queuedFilmsButton.classList.add('toggle-button');
-export const myLibraryButtonWrapper = document.querySelector('.my-library-button-wrapper')
+queuedFilmsButton.classList.add('toggle-button');myLibraryButtonWrapper = document.querySelector('.my-library-button-wrapper')
 
 
 export async function fetchFilmData() {
@@ -51,8 +50,7 @@ export async function fetchFilmData() {
       filmInfoContainer.appendChild(filmRating);
       liElement.appendChild(filmInfoContainer);
 
-      const buttonDiv = document.createElement('div');
-      buttonDiv.classList.add('wrapper-for-buttons')
+      const buttonDiv = document.createElement('div')
       const addToWatchButton = document.createElement('button')
       addToWatchButton.classList.add('watched-button')
       addToWatchButton.textContent = 'Add to Watched'
@@ -125,13 +123,12 @@ clearLibraryButton.classList.add('.toggle-button');
 export function increaseWatched(){
   watchedCounter++
   watchedCounterElement.textContent = `Watched films: ${watchedCounter}`
-  localStorage.setItem('watchedCounter', watchedCounter);
+
 }
 
 export function increaseQueued(){
   queuedCounter++
   queuedCounterElement.textContent = `Films in que: ${queuedCounter}`
-  localStorage.setItem('queuedCounter', queuedCounter);
 }
 
 export function decreaseWatched() {
@@ -172,18 +169,4 @@ function clearQueuedLibrary() {
   clearLibraryButton.style.display = 'none';
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-  if (localStorage.getItem('watchedCounter')) {
-    watchedCounter = parseInt(localStorage.getItem('watchedCounter'));
-    watchedCounterElement.textContent = `Watched films: ${watchedCounter}`;
-  }
 
-  if (localStorage.getItem('queuedCounter')) {
-    queuedCounter = parseInt(localStorage.getItem('queuedCounter'));
-    queuedCounterElement.textContent = `Films in que: ${queuedCounter}`;
-  }
-
-  
-  watchedCounter = watchedCounter || 0;
-  queuedCounter = queuedCounter || 0;
-});
