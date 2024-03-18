@@ -51,16 +51,17 @@ export async function fetchFilmData() {
       filmInfoContainer.appendChild(filmRating);
       liElement.appendChild(filmInfoContainer);
 
-      const buttonDiv = document.createElement('div')
-      const addToWatchButton = document.createElement('button')
-      addToWatchButton.classList.add('watched-button')
-      addToWatchButton.textContent = 'Add to Watched'
-      const addToQueButton = document.createElement('button')
-      addToQueButton.classList.add('queued-button')
-      addToQueButton.textContent = 'Add to Que'
-      buttonDiv.appendChild(addToWatchButton)
-      buttonDiv.appendChild(addToQueButton)
-      liElement.appendChild(buttonDiv)
+      const buttonDiv = document.createElement('div');
+      buttonDiv.style.margin = '10px 10px';
+      const addToWatchButton = document.createElement('button');
+      addToWatchButton.classList.add('watched-button');
+      addToWatchButton.textContent = 'Add to Watched';
+      const addToQueButton = document.createElement('button');
+      addToQueButton.classList.add('queued-button');
+      addToQueButton.textContent = 'Add to Que';
+      buttonDiv.appendChild(addToWatchButton);
+      buttonDiv.appendChild(addToQueButton);
+      liElement.appendChild(buttonDiv);
 
 
       const watchButton = liElement.querySelector('.watched-button');
