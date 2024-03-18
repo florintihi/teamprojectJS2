@@ -1,4 +1,4 @@
-import { fetchFilmData, ul, queuedCounterElement, watchedCounterElement, queuedCounter, watchedCounter, watchedFilmsButton, queuedFilmsButton, clearLibraryButton } from './main.js';
+import { fetchFilmData, ul, queuedCounterElement, watchedCounterElement, queuedCounter, watchedCounter, watchedFilmsButton, queuedFilmsButton, clearLibraryButton, myLibraryButtonWrapper} from './main.js';
 const homeButton = document.querySelector('.home-page');
 const libraryWrapper = document.querySelector('.library-wrapper');
 const myLibraryButton = document.querySelector('.library-page');
